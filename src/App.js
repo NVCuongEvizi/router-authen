@@ -1,19 +1,20 @@
-import { useEffect } from "react";
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Routes, Route, useNavigate, Navigate } from "react-router-dom";
 import Dashboard from "./components/Dashboard";
 import Login from "./components/Login";
 
 function App() {
 
-  const navigate = useNavigate()
+  const [isLogin, setIsLogin] = useState(null)
 
   useEffect(() => {
     const jwt = localStorage.getItem('jwt')
-    if (!jwt) {
-      console.log('no jwt')
-      navigate('/login')
-    }
+    setIsLogin(jwt)
   }, [])
+
+  if (isLogin) {
+    return <Navigate to='/login' replace />
+  }
 
   return (
     <div className="App">
