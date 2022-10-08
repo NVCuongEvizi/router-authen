@@ -1,27 +1,24 @@
-import { useEffect, useState } from "react";
-import { Routes, Route, useNavigate, Navigate } from "react-router-dom";
+import { useEffect, } from "react";
+import { Routes, Route, useNavigate } from "react-router-dom";
+import { fetchJwt } from "./api/fetchJwt";
 import Dashboard from "./components/Dashboard";
 import Login from "./components/Login";
 
 function App() {
-
-  const [isLogin, setIsLogin] = useState(null)
+  const navigate = useNavigate()
 
   useEffect(() => {
-    const jwt = localStorage.getItem('jwt')
-    setIsLogin(jwt)
-  }, [])
-
-  if (isLogin) {
-    return <Navigate to='/login' replace />
-  }
+    const jwt = fetchJwt()
+    if (!jwt || jwt.value !== '123') {
+      navigate('/login')
+    }
+  }, [navigate])
 
   return (
     <div className="App">
       <Routes>
-        <Route path='/' element={<Dashboard />} />
         <Route path='/login' element={<Login />} />
-        <Route path='*' element={<Dashboard />} />
+        <Route path='/*' element={<Dashboard />} />
       </Routes>
     </div>
   );
