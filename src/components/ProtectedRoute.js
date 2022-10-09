@@ -3,6 +3,7 @@ import { fetchJwt } from "../api/fetchJwt"
 
 const ProtectedRoute = ({ allowedRole }) => {
   const jwt = fetchJwt()
+
   return (
     jwt ? (jwt.value === '123' ?
       (allowedRole.includes(jwt.role) ? <Outlet />

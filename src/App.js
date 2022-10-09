@@ -1,26 +1,20 @@
-import { useEffect, } from "react";
-import { Routes, Route, useNavigate } from "react-router-dom";
-import { fetchJwt } from "./api/fetchJwt";
+import { Routes, Route } from "react-router-dom";
 import Dashboard from "./components/Dashboard";
 import Login from "./components/Login";
+import ProtectedLogin from "./components/ProtectedLogin";
 
 function App() {
-  const navigate = useNavigate()
-
-  useEffect(() => {
-    const jwt = fetchJwt()
-    if (!jwt || jwt.value !== '123') {
-      navigate('/login', { replace: true })
-    }
-  }, [navigate])
 
   return (
     <div className="App">
       <Routes>
         <Route path='/login' element={<Login />} />
-        <Route path='/*' element={<Dashboard />} />
+
+        <Route element={<ProtectedLogin />}>
+          <Route path='/*' element={<Dashboard />} />
+        </Route>
       </Routes>
-    </div>
+    </div >
   );
 }
 
