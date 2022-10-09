@@ -1,6 +1,6 @@
 export const fetchJwt = () => {
   let jwt = {}
-  jwt = localStorage.getItem('jwt_super_manager')
+  jwt = localStorage.getItem('jwt_super_admin')
   // value: {"role":"super_admin","value":"404"}
 
   // jwt = localStorage.getItem('jwt_region_manager')
