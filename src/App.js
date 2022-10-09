@@ -10,7 +10,7 @@ function App() {
   useEffect(() => {
     const jwt = fetchJwt()
     if (!jwt || jwt.value !== '123') {
-      navigate('/login')
+      navigate('/login', { replace: true })
     }
   }, [navigate])
 

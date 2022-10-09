@@ -2,7 +2,7 @@ import React from 'react'
 
 const Regions = () => {
   return (
-    <div>Regions</div>
+    <div>Regions Page</div>
   )
 }
 

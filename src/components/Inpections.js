@@ -2,7 +2,7 @@ import React from 'react'
 
 const Inpections = () => {
   return (
-    <div>Inpections</div>
+    <div>Inpections Page</div>
   )
 }
 
